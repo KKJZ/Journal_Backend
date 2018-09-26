@@ -3,6 +3,10 @@ const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 
+//import routes
+const loginRouter = require('./login/login');
+const registerRouter = require('./register/register');
+
 //import .config
 const {PORT, DATABASE_URL} =require('./.config');
 
@@ -26,6 +30,10 @@ app.use(function (req, res, next) {
 
 //logging with morgan
 app.use(morgan('common'));
+
+//endpoints
+app.use('/login', loginRouter);
+app.use('/register', registerRouter);
 
 let server;
 
