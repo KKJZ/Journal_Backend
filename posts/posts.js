@@ -14,7 +14,15 @@ const {Users} = require('../models/users');
 const {Posts} = require('../models/posts');
 
 //GET endpoint
-router.get()
+router.get('/', verify, (res, req) => {
+	jwt.verify(req.token, JWT_SECERT, (err, authData) => {
+		if (err) {
+			res.sendStatus(403);
+		} else {
+			console.log(authData);
+		}
+	})
+});
 
 //POST endpoint
 router.post()
