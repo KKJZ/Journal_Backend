@@ -4,7 +4,7 @@
   "description": "Api for Journaling app",
   "main": "app.js",
   "scripts": {
-    "test": "Mocha"
+    "test": "mocha"
   },
   "keywords": [
     "Journal"
