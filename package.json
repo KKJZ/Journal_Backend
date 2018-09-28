@@ -4,7 +4,7 @@
   "description": "Api for Journaling app",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "Mocha"
   },
   "keywords": [
     "Journal"
@@ -19,5 +19,11 @@
     "mongoose": "^5.2.17",
     "morgan": "^1.9.1",
     "npm": "^6.4.1"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.0",
+    "faker": "^4.1.0",
+    "mocha": "^5.2.0"
   }
 }
