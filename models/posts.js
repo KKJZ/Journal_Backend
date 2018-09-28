@@ -11,9 +11,12 @@ const postSchema = mongoose.Schema({
 	userName: {type: String, required: true}
 });
 
+//need to ask ken about a time virtual
+
 postSchema.methods.serialize = function() {
 	return {
-		date: Date.now(),
+		id: this.id,
+		date: this.date,
 		content: this.content,
 		userName: this.userName
 	};

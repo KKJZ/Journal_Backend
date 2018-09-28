@@ -6,12 +6,11 @@ const mongoose = require('mongoose');
 //import routes
 const loginRouter = require('./login/login');
 const registerRouter = require('./register/register');
+const postRouter = require('./posts/posts');
 
 //import .config
 const {PORT, DATABASE_URL} =require('./.config');
 
-//import models
-// const {} = require('models/');
 
 const app = express();
 //es6 promise
@@ -34,6 +33,7 @@ app.use(morgan('common'));
 //endpoints
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);
+app.use('/posts', postRouter);
 
 let server;
 
