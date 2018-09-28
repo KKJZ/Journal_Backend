@@ -15,3 +15,22 @@ const {app, runServer, closeServer} = require('../app');
 const {TEST_DATABASE_URL} = require('../.config');
 
 chai.use(chaiHttp);
+
+//make a post
+function generatePostData () {
+	const data = {
+		content: faker.lorem.paragraph()
+	};
+	return data;
+};
+
+//make user account
+function generateUserAccount () {
+	const data = {
+		userName: faker.internet.userName(),
+		password: faker.internet.passwor()
+	};
+	return data;
+};
+
+describe('Journal Back-end, login endpoint', )

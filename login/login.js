@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken');
 
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
+
 const {JWT_SECERT} = require('../.config');
 const {verify} = require('../scripts/verify');
 
