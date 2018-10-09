@@ -54,8 +54,9 @@ router.post('/', verify, jsonParser, (req, res) => {
 				};
 			};
 			let {content} = req.body;
+			let date = new Date();
 			const item = Posts.create({
-				date: Date.now(),
+				date: date.toString(),
 				content,
 				userName
 			})

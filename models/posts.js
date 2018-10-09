@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 const postSchema = mongoose.Schema({
-	date: {type: Number},
+	date: {type: String},
 	content: {type: String, required: true},
 	userName: {type: String, required: true}
 });
