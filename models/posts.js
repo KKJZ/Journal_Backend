@@ -11,8 +11,6 @@ const postSchema = mongoose.Schema({
 	userName: {type: String, required: true}
 });
 
-//need to ask ken about a time virtual
-
 postSchema.methods.serialize = function() {
 	return {
 		id: this.id,
