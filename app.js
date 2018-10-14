@@ -23,7 +23,7 @@ app.use(function (req, res, next) {
 	res.header('Access-Control-Allow-Headers', '*');
 	res.header('Access-Control-Allow-Methods', '*');
 	if (req.method === 'OPTIONS') {
-		return res.send(204);
+		return res.sendStatus(204);
 	}
 	next();
 });
