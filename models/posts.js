@@ -6,14 +6,15 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 const postSchema = mongoose.Schema({
-	date: {type: Number},
+	date: {type: String},
 	content: {type: String, required: true},
 	userName: {type: String, required: true}
 });
 
 postSchema.methods.serialize = function() {
 	return {
-		date: Date.now(),
+		id: this.id,
+		date: this.date,
 		content: this.content,
 		userName: this.userName
 	};
