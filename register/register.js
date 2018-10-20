@@ -41,8 +41,9 @@ router.post('/', jsonParser, (req, res) => {
 			})
 		})
 		.then(user => {
+			console.log(JWT_SECERT);
 			jwt.sign({userName}, JWT_SECERT, {expiresIn: '5m'}, (err, token) => {
-				return res.json({token})
+				res.json({token})
 			})
 		})
 		.catch(err => {

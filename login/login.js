@@ -40,6 +40,7 @@ router.post('/', jsonParser, (req, res) => {
 		} else {
 			//jwt token sign and send
 			jwt.sign({userName}, JWT_SECERT, {expiresIn: '5m'}, (err, token) => {
+				console.log(err);
 				res.json({token});
 			})
 		}
