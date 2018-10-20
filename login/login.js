@@ -33,11 +33,8 @@ router.post('/', jsonParser, (req, res) => {
 			//THIS IS THE PROBLEM IT DOESN'T END HERE
 			return res.sendStatus(400);	 
 		}
-	})
-	.then(val => {
 		//check password to see if it is valid
-		console.log(val);
-		if (Users().validatePassword(password, val.password) === false) {
+		if (Users().validatePassword(password, user.password) === false) {
 			return res.sendStatus(401);
 		} else {
 			//jwt token sign and send
