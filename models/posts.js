@@ -7,6 +7,7 @@ mongoose.Promise = global.Promise;
 
 const postSchema = mongoose.Schema({
 	date: {type: String},
+	title: {type: String, required: true},
 	content: {type: String, required: true},
 	userName: {type: String, required: true}
 });
@@ -14,6 +15,7 @@ const postSchema = mongoose.Schema({
 postSchema.methods.serialize = function() {
 	return {
 		id: this.id,
+		title: this.title,
 		date: this.date,
 		content: this.content,
 		userName: this.userName

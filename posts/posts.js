@@ -44,7 +44,7 @@ router.post('/', verify, jsonParser, (req, res) => {
 			let {userName} = authData;
 			console.log(`userName: ${userName}`);
 			//what fields do we need to make a post? date, content, userName
-			const requiredFields =  ["content"];
+			const requiredFields =  ["content", "title"];
 			for (let i = 0; i<requiredFields.length; i++) {
 				const field = requiredFields[i];
 				if (!(field in req.body)) {
@@ -53,10 +53,11 @@ router.post('/', verify, jsonParser, (req, res) => {
 						return res.stats(400).send(messege);
 				};
 			};
-			let {content} = req.body;
+			let {content, title} = req.body;
 			let date = new Date();
 			const item = Posts.create({
 				date: date.toString(),
+				title,
 				content,
 				userName
 			})
