@@ -15,38 +15,37 @@ const {Users} = require('../models/users');
 
 router.post('/', jsonParser, (req, res) => {
 	//needed fields
+	console.log(req.body);
 	const requiredFields = ['userName', 'password'];
 	for (let i = 0; i < requiredFields.length; i++) {
 		const field = requiredFields[i]
 		if (!(field in req.body)) {
 			const messege = `Request body missing ${field}`;
 			console.log(messege);
-			return res.status(400).send(messege);	
+			return res.sendStatus(400);	
 		}
 	}
 	let {userName, password} = req.body;
-	let passTest;
-	// make sure the user name is valid
 	Users.findOne({'userName': userName}, (err, user) => {
+		console.log(user);
 		if (user === null) {
-			return res.status(400).send('User not found.');
+			console.log('inside if')
+			//THIS IS THE PROBLEM IT DOESN'T END HERE
+			return res.sendStatus(400);	 
 		}
-		return passTest = Users().validatePassword(password, user.password); 
-	})
-	.then(val => {
 		//check password to see if it is valid
-		if (passTest === false) {
-			res.status(400).send('Wrong password');
+		if (Users().validatePassword(password, user.password) === false) {
+			return res.sendStatus(401);
 		} else {
 			//jwt token sign and send
 			jwt.sign({userName}, JWT_SECERT, {expiresIn: '5m'}, (err, token) => {
-				console.log(err);
-				res.json({token});
+				return res.json({token});
 			})
 		}
 	})
 	.catch(err => {
-		return res.status(500).send('Something happened.');
+		console.log(err);
+		return res.sendStatus(500);
 	})
 });
 
