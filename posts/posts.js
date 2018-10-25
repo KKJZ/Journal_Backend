@@ -77,10 +77,12 @@ router.put('/:id', verify, jsonParser, (req, res) => {
 			res.sendStatus(403);
 		} else {
 			console.log(authData);
-			let {userName} =  authData;
+			let {userName} = authData;
 			console.log(`userName: ${userName}`);
 			//can only update content
-			const update = {content: req.body.content};
+			const update = {
+				title: req.body.title,
+				content: req.body.content};
 			Posts.findByIdAndUpdate(req.params.id, {$set: update}, {new: true})
 			.then(updatedPost => res.status(204).end())
 			.catch(err => {
