@@ -3,6 +3,9 @@ const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 
+//dotenv
+require('dotenv').config();
+
 //import routes
 const loginRouter = require('./login/login');
 const registerRouter = require('./register/register');
