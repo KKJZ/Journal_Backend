@@ -9,7 +9,10 @@ const postSchema = mongoose.Schema({
 	date: {type: String},
 	title: {type: String, required: true},
 	content: {type: String, required: true},
-	userName: {type: String, required: true}
+	userName: {type: String, required: true},
+	windowColor: {type:String, required:true},
+	fontColor: {type:String, required:true},
+	postFont: {type:String, required:true}
 });
 
 postSchema.methods.serialize = function() {
@@ -18,7 +21,10 @@ postSchema.methods.serialize = function() {
 		title: this.title,
 		date: this.date,
 		content: this.content,
-		userName: this.userName
+		userName: this.userName,
+		windowColor:this.windowColor,
+		fontColor: this.fontColor,
+		postFont: this.postFont
 	};
 };
 

@@ -44,7 +44,7 @@ router.post('/', verify, jsonParser, (req, res) => {
 			let {userName} = authData;
 			console.log(`userName: ${userName}`);
 			//what fields do we need to make a post? date, content, userName
-			const requiredFields =  ["content", "title"];
+			const requiredFields =  ["content", "title", "windowColor", "fontColor", "postFont"];
 			for (let i = 0; i<requiredFields.length; i++) {
 				const field = requiredFields[i];
 				if (!(field in req.body)) {
@@ -53,13 +53,16 @@ router.post('/', verify, jsonParser, (req, res) => {
 						return res.stats(400).send(messege);
 				};
 			};
-			let {content, title} = req.body;
+			let {content, title, windowColor,fontColor, postFont} = req.body;
 			let date = new Date();
 			const item = Posts.create({
 				date: date.toString(),
 				title,
 				content,
-				userName
+				userName,
+				windowColor,
+				fontColor,
+				postFont
 			})
 			.then(post => res.status(201).json(post.serialize()))
 			.catch(err => {
@@ -82,7 +85,11 @@ router.put('/:id', verify, jsonParser, (req, res) => {
 			//can only update content
 			const update = {
 				title: req.body.title,
-				content: req.body.content};
+				content: req.body.content,
+				windowColor: req.body.windowColor,
+				fontColor: req.body.fontColor,
+				postFont: req.body.postFont
+			};
 			Posts.findByIdAndUpdate(req.params.id, {$set: update}, {new: true})
 			.then(updatedPost => res.status(204).end())
 			.catch(err => {
