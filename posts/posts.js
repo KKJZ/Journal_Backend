@@ -22,7 +22,7 @@ router.get('/', verify, (req, res) => {
 			console.log(authData);
 			let {userName} = authData;
 			console.log(`userName: ${userName}`);
-			Posts.find()
+			Posts.find({userName: userName})
 			.then(posts => {
 				res.json(posts.map(post => post.serialize()));
 			})
